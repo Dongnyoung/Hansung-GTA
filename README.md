@@ -1,2 +1,0 @@
-# Hansung-GTA
-Hansung-GTA
