@@ -14428,7 +14428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5682633802629659838, guid: cca7ca7fef4016648a7396ddd83e4967, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.426
+      value: 0.498
       objectReference: {fileID: 0}
     - target: {fileID: 5682633802629659838, guid: cca7ca7fef4016648a7396ddd83e4967, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14472,6 +14472,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5014500871186048516, guid: cca7ca7fef4016648a7396ddd83e4967, type: 3}
       insertIndex: -1
       addedObject: {fileID: 300804146}
+    - targetCorrespondingSourceObject: {fileID: 5014500871186048516, guid: cca7ca7fef4016648a7396ddd83e4967, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 300804147}
   m_SourcePrefab: {fileID: 100100000, guid: cca7ca7fef4016648a7396ddd83e4967, type: 3}
 --- !u!4 &300804142 stripped
 Transform:
@@ -14498,7 +14501,13 @@ MonoBehaviour:
   currentRunningGaze: 0
   maxRunningGaze: 0
   moveSpeed: 1
+  jumpForce: 5
   animator: {fileID: 0}
+  groundCheck: {fileID: 0}
+  groundDistance: 0.2
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!136 &300804146
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14522,6 +14531,33 @@ CapsuleCollider:
   m_Height: 1.9994565
   m_Direction: 1
   m_Center: {x: -0.012516022, y: 0.8817834, z: 0}
+--- !u!54 &300804147
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24240068}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &301445925
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,17 +15,10 @@ public class CshController : MonoBehaviour
     public float currentRunningGaze;
     public float maxRunningGaze;
     public float moveSpeed = 2f;
-    public float jumpForce = 5f; // 점프 힘
     public Animator animator;
 
     private Rigidbody rb;
     private Vector3 moveDirection;
-
-    // 바닥 체크용
-    public Transform groundCheck;
-    public float groundDistance = 0.2f;
-    public LayerMask groundMask;
-    private bool isGrounded;
 
     void Start()
     {
@@ -43,9 +36,6 @@ public class CshController : MonoBehaviour
         gameTime += Time.deltaTime;
         currentTime += Time.deltaTime;
 
-        // 바닥 체크
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
         moveDirection = Vector3.zero;
         if (Input.GetKey(KeyCode.W)) moveDirection += Vector3.forward;
         if (Input.GetKey(KeyCode.A)) moveDirection += Vector3.left;
@@ -54,24 +44,17 @@ public class CshController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) isrunning = 2.5f;
         if (Input.GetKeyUp(KeyCode.LeftShift)) isrunning = 1.0f;
-
+       
         moveDirection.Normalize();
 
         // 회전 처리
         if (moveDirection.magnitude > 0.1f)
         {
             Quaternion targetRot = Quaternion.LookRotation(moveDirection);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, 0.2f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, 0.2f); // 회전 속도 약간 빠르게
         }
 
         animator.SetFloat("movement", moveDirection.magnitude * isrunning);
-
-        // 점프 입력 처리
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            animator.SetTrigger("jump"); // 점프 애니메이션 트리거
-        }
 
         // 기존 HP, 스킬 등 로직 그대로 유지
         /*
