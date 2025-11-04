@@ -12862,6 +12862,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5600751147666235521}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4718411427137272495}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5864081105590018274}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3218535975242254054}
   m_SourcePrefab: {fileID: 100100000, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
 --- !u!137 &12261157847747889 stripped
 SkinnedMeshRenderer:
@@ -13789,6 +13798,76 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!54 &-4718411427137272495
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049320596049450795}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &5864081105590018274
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049320596049450795}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6309085, y: 2.0580878, z: 0.91456443}
+  m_Center: {x: -0.0065720975, y: 0.8970735, z: 0.042717725}
+--- !u!195 &-3218535975242254054
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049320596049450795}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!137 &2049539207049940329 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -8304458611408181485, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
