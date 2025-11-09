@@ -20,6 +20,12 @@ public class CshController : MonoBehaviour
     private Rigidbody rb;
     private Vector3 moveDirection;
 
+    [Header("Jump")]
+    public float jumpForce = 5f;
+    public float groundCheckDistance = 0.25f; // 바닥 감지 거리
+    public LayerMask groundMask = ~0;         // 필요시 Ground 레이어로 제한
+
+    private bool isGrounded;
     void Start()
     {
         currentRunningGaze = maxRunningGaze;
@@ -44,13 +50,22 @@ public class CshController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) isrunning = 2.5f;
         if (Input.GetKeyUp(KeyCode.LeftShift)) isrunning = 1.0f;
-        if (Input.GetKeyDown(KeyCode.Space))
+        // --- 착지 체크 (Raycast) ---
+        // 살짝 위에서 아래로 쏴서 바닥 감지 (캐릭터가 바닥과 겹칠 때 오검출 방지)
+        Vector3 rayOrigin = transform.position + Vector3.up * 0.1f;
+        isGrounded = Physics.Raycast(rayOrigin, Vector3.down, groundCheckDistance + 0.1f, groundMask);
+
+        // --- 점프 ---
+        // GetKeyDown + isGrounded 조건으로 "한 번만" 점프
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             animator.SetTrigger("jump");
-            rb.AddForce(Vector3.up * 200.0f);
 
+            // 점프 직전 Y속도를 0으로 만들어 일관된 점프 높이 보장(선택)
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
-
         moveDirection.Normalize();
 
         // 회전 처리
