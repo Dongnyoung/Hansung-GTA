@@ -44,7 +44,13 @@ public class CshController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) isrunning = 2.5f;
         if (Input.GetKeyUp(KeyCode.LeftShift)) isrunning = 1.0f;
-       
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            animator.SetTrigger("jump");
+            rb.AddForce(Vector3.up * 200.0f);
+
+        }
+
         moveDirection.Normalize();
 
         // 회전 처리
