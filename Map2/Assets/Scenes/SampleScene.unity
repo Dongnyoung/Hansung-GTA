@@ -15834,6 +15834,7 @@ MonoBehaviour:
   maxRunningGaze: 0
   moveSpeed: 2
   animator: {fileID: 300804153}
+  playerCamera: {fileID: 963194228}
   jumpForce: 5
   groundCheckDistance: 0.25
   groundMask:
@@ -24920,6 +24921,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 203034703}
+  - {fileID: 526438029}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &507836530
@@ -25353,19 +25355,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 504329772}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -50.095
+      value: 0.01499939
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.261
+      value: -0.09867987
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.739
+      value: -0.11459732
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25373,15 +25375,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -25397,7 +25399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
       propertyPath: m_Name
-      value: npc_casual_set_00
+      value: FirstMissionProfessor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26363,6 +26365,11 @@ MeshFilter:
 --- !u!1 &526438028 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
+  m_PrefabInstance: {fileID: 513820740}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &526438029 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7e49df0e776c1614da368ac187d54ce0, type: 3}
   m_PrefabInstance: {fileID: 513820740}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &526438030
@@ -109831,4 +109838,3 @@ SceneRoots:
   - {fileID: 1060119064}
   - {fileID: 916608074}
   - {fileID: 504329772}
-  - {fileID: 513820740}
