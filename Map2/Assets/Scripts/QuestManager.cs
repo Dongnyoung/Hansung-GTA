@@ -8,27 +8,31 @@ public class QuestManager : MonoBehaviour
     public GameObject missionPanel;        // 좌상단 미션 패널
     public TMP_Text missionText;           // 좌상단 텍스트
 
-    [Header("Dialogue UI")]
-    public GameObject dialogueUI;          // 완료 후 대화창
-    public TMP_Text dialogueText;          // 대화 텍스트
+    [Header("UI Complete")]
+    public GameObject questComplete;       // 미션 완료 패널 (인스펙터에서 직접 연결)
+    public TMP_Text completeText;          // 완료 텍스트 (인스펙터에서 직접 설정)
 
-    private bool isQuestActive = false;    // 진행 중
+    private bool isQuestActive = false;    // 진행 중 여부
     private bool questCompleted = false;   // 완료 여부
 
-    void Start()
+    private void Start()
     {
+        // 처음엔 UI 패널들 비활성화
         if (questWindow != null) questWindow.SetActive(false);
         if (missionPanel != null) missionPanel.SetActive(false);
-        if (dialogueUI != null) dialogueUI.SetActive(false);
+        if (questComplete != null) questComplete.SetActive(false);
     }
 
     // 퀘스트 수락
     public void AcceptQuest()
     {
-        if (isQuestActive || questCompleted) return; // 이미 진행 중이거나 완료되면 무시
+        if (isQuestActive || questCompleted) return; // 이미 진행 중이거나 완료된 경우 무시
 
         isQuestActive = true;
-        if (questWindow != null) questWindow.SetActive(false);
+
+        if (questWindow != null)
+            questWindow.SetActive(false);
+
         if (missionPanel != null)
         {
             missionPanel.SetActive(true);
@@ -42,10 +46,14 @@ public class QuestManager : MonoBehaviour
     // 퀘스트 거절
     public void DeclineQuest()
     {
-        if (isQuestActive || questCompleted) return; // 진행 중이면 거절 불가
+        if (isQuestActive || questCompleted) return;
 
-        if (questWindow != null) questWindow.SetActive(false);
-        if (missionPanel != null) missionPanel.SetActive(false);
+        if (questWindow != null)
+            questWindow.SetActive(false);
+
+        if (missionPanel != null)
+            missionPanel.SetActive(false);
+
         Debug.Log("Quest declined");
     }
 
@@ -57,21 +65,25 @@ public class QuestManager : MonoBehaviour
         isQuestActive = false;
         questCompleted = true;
 
-        if (missionPanel != null) missionPanel.SetActive(false);
+        // 진행 중 미션 패널 숨기기
+        if (missionPanel != null)
+            missionPanel.SetActive(false);
+
+        // 완료 패널 표시 (인스펙터에서 연결된 패널 그대로 사용)
+        if (questComplete != null)
+            questComplete.SetActive(true);
+
         Debug.Log("Quest completed!");
-
-        ShowDialogue("고마워요! 미션 완료했습니다!");
     }
 
-    private void ShowDialogue(string message)
+    // 완료 패널 닫기 (버튼에서 호출)
+    public void CloseCompletePanel()
     {
-        if (dialogueUI != null && dialogueText != null)
-        {
-            dialogueText.text = message;
-            dialogueUI.SetActive(true);
-        }
+        if (questComplete != null)
+            questComplete.SetActive(false);
     }
 
+    // 외부 접근용 프로퍼티
     public bool IsQuestActive() => isQuestActive;
     public bool IsQuestCompleted() => questCompleted;
 }
