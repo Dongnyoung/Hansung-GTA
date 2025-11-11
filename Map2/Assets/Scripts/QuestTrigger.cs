@@ -19,4 +19,13 @@ public class QuestTriggerZone : MonoBehaviour
         if (questManager.questWindow != null)
             questManager.questWindow.SetActive(true);
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (questManager.questWindow != null)
+                questManager.questWindow.SetActive(false);
+        }
+    }
 }
