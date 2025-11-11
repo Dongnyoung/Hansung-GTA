@@ -2,17 +2,15 @@ using UnityEngine;
 
 public class DeliveryTargetTrigger : MonoBehaviour
 {
-    public QuestManager questManager; // Inspector에 드래그할 것
+    public QuestManager questManager;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player")) return;
+
+        if (questManager != null && questManager.IsQuestActive())
         {
-            Debug.Log("Player entered DeliveryTarget trigger.");
-            if (questManager != null && questManager.IsQuestActive())
-            {
-                questManager.QuestComplete();
-            }
+            questManager.QuestComplete();
         }
     }
 }

@@ -54315,6 +54315,8 @@ MonoBehaviour:
   questWindow: {fileID: 93672297}
   missionPanel: {fileID: 2035243566}
   missionText: {fileID: 1942707452}
+  dialogueUI: {fileID: 0}
+  dialogueText: {fileID: 0}
 --- !u!4 &1060119064
 Transform:
   m_ObjectHideFlags: 0
@@ -58884,9 +58886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8d99c67caeaf44eaf4811b47ebd77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questUI: {fileID: 93672297}
-  questText: 
-  questTextField: {fileID: 0}
+  questManager: {fileID: 1060119063}
 --- !u!1001 &1182217776
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,41 +1,22 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class QuestTrigger : MonoBehaviour
+public class QuestTriggerZone : MonoBehaviour
 {
-    public GameObject questUI;      // UI 패널
-    public string questText;        // 퀘스트 내용
-    public Text questTextField;     // 텍스트 표시용
-
-    private bool playerInside = false;
-
-    private void Start()
-    {
-        if (questUI != null)
-            questUI.SetActive(false); // 처음엔 비활성화
-    }
+    public QuestManager questManager;   // QuestManager 연결
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInside = true;
-            if (questUI != null)
-            {
-                questUI.SetActive(true);
-                if (questTextField != null)
-                    questTextField.text = questText;
-            }
-        }
-    }
+        if (!other.CompareTag("Player")) return;
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        // 이미 진행 중이거나 완료된 퀘스트면 UI 띄우지 않음
+        if (questManager.IsQuestActive() || questManager.IsQuestCompleted())
         {
-            playerInside = false;
-            if (questUI != null)
-                questUI.SetActive(false);
+            Debug.Log("퀘스트가 이미 진행 중이거나 완료됨, UI 표시 안함");
+            return;
         }
+
+        // QuestWindow 활성화 (Inspector에서 미리 연결)
+        if (questManager.questWindow != null)
+            questManager.questWindow.SetActive(true);
     }
 }
