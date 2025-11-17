@@ -8,6 +8,7 @@ public class CshController : MonoBehaviour
     float isrunning;
     public float HP;
     public float maxHP = 10;
+    public int gold = 0; // 플레이어 소유 골드, 초기값 0
 
     public float gameTime;
     public float currentTime;
@@ -32,6 +33,7 @@ public class CshController : MonoBehaviour
 
     void Start()
     {
+        maxRunningGaze = 10f;
         currentRunningGaze = maxRunningGaze;
         isrunning = 1.0f;
         animator = GetComponent<Animator>();
@@ -74,8 +76,18 @@ public class CshController : MonoBehaviour
         moveDirection = (forward * v + right * h).normalized;
 
         // --- 달리기 ---
-        if (Input.GetKey(KeyCode.LeftShift)) isrunning = 2.5f;
-        else isrunning = 1.0f;
+        if (Input.GetKey(KeyCode.LeftShift) && currentRunningGaze > 0f && moveDirection.magnitude > 0.1f)
+        {
+            isrunning = 2.5f;
+            currentRunningGaze -= Time.deltaTime; // 초당 1씩 감소
+            if (currentRunningGaze < 0f) currentRunningGaze = 0f;
+        }
+        else
+        {
+            isrunning = 1f;
+            currentRunningGaze += Time.deltaTime * 0.5f; // 안 뛰면 천천히 회복
+            if (currentRunningGaze > maxRunningGaze) currentRunningGaze = maxRunningGaze;
+        }
 
         // --- 착지 체크 ---
         Vector3 rayOrigin = transform.position + Vector3.up * 0.1f;
@@ -104,5 +116,16 @@ public class CshController : MonoBehaviour
         // Rigidbody 기반 이동
         Vector3 velocity = moveDirection * moveSpeed * isrunning;
         rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+    }
+
+    public void AddGold(int amount)
+    {
+        gold += amount;
+    }
+
+    public void SpendGold(int amount)
+    {
+        gold -= amount;
+        if (gold < 0) gold = 0;
     }
 }
