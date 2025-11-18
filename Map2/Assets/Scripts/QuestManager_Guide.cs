@@ -114,7 +114,7 @@ public class QuestManager_Guide : MonoBehaviour
             questComplete.SetActive(true);
 
             guideContoller.isStopped = true;
-            
+
         }
         if (Player != null)
         {
