@@ -1,9 +1,12 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
 
 public class QuestManager_Guide : MonoBehaviour
 {
     public GameObject Player;
+    public GuideNPCController guideContoller;
+    public GameObject GuideNPC;
+    public Animator guideAnimator;
     [Header("UI References")]
     public GameObject questWindow;
     public GameObject missionPanel;
@@ -16,7 +19,7 @@ public class QuestManager_Guide : MonoBehaviour
     public TMP_Text failText;
 
     [Header("Quest Timer")]
-    public float questTimeLimit = 20f; // Á¦ÇÑ ½Ã°£ 50ÃÊ
+    public float questTimeLimit = 20f; // ì œí•œ ì‹œê°„ 50ì´ˆ
     private float remainingTime;
 
     private bool isQuestActive = false;
@@ -25,6 +28,7 @@ public class QuestManager_Guide : MonoBehaviour
 
     private void Start()
     {
+        if (GuideNPC != null) GuideNPC = GameObject.FindWithTag("GuideNPC");
         if (questWindow != null) questWindow.SetActive(false);
         if (missionPanel != null) missionPanel.SetActive(false);
         if (questComplete != null) questComplete.SetActive(false);
@@ -32,23 +36,25 @@ public class QuestManager_Guide : MonoBehaviour
         if (Player == null)
             Player = GameObject.FindWithTag("Player");
         remainingTime = questTimeLimit;
+
+        guideAnimator = GuideNPC.GetComponent<Animator>();
     }
 
     private void Update()
     {
         if (isQuestActive && !questCompleted)
         {
-            // Á¦ÇÑ½Ã°£ °¨¼Ò
+            // ì œí•œì‹œê°„ ê°ì†Œ
             remainingTime -= Time.deltaTime;
 
-            // ¹Ì¼Ç ÆĞ³Î ÅØ½ºÆ®¿¡ ³²Àº ½Ã°£ Ç¥½Ã
+            // ë¯¸ì…˜ íŒ¨ë„ í…ìŠ¤íŠ¸ì— ë‚¨ì€ ì‹œê°„ í‘œì‹œ
             if (missionText != null)
             {
                 int seconds = Mathf.CeilToInt(remainingTime);
-                missionText.text = $"¹è´Ş Áß... ¸ñÀûÁö·Î ÀÌµ¿ÇÏ¼¼¿ä! ³²Àº ½Ã°£: {seconds}s";
+                missionText.text = $"ìƒìƒê´€ìœ¼ë¡œ ì´ë™í•˜ì„¸ìš”! ë‚¨ì€ ì‹œê°„: {seconds}s";
             }
 
-            // ½Ã°£ ÃÊ°ú ½Ã ½ÇÆĞ Ã³¸®
+            // ì‹œê°„ ì´ˆê³¼ ì‹œ ì‹¤íŒ¨ ì²˜ë¦¬
             if (remainingTime <= 0f)
             {
                 QuestFailed();
@@ -56,28 +62,30 @@ public class QuestManager_Guide : MonoBehaviour
         }
     }
 
-    // Äù½ºÆ® ¼ö¶ô
+    // í€˜ìŠ¤íŠ¸ ìˆ˜ë½
     public void AcceptQuest()
     {
         if (isQuestActive || questCompleted) return;
 
         isQuestActive = true;
         questFailed = false;
-        remainingTime = questTimeLimit; // Á¦ÇÑ½Ã°£ ÃÊ±âÈ­
+        remainingTime = questTimeLimit; // ì œí•œì‹œê°„ ì´ˆê¸°í™”
 
         if (questWindow != null) questWindow.SetActive(false);
 
         if (missionPanel != null)
         {
+            guideContoller.enabled = true;
             missionPanel.SetActive(true);
+            
             if (missionText != null)
-                missionText.text = $"¹è´Ş Áß... \n¸ñÀûÁö·Î ÀÌµ¿ÇÏ¼¼¿ä! \n³²Àº ½Ã°£: {Mathf.CeilToInt(remainingTime)}s";
+                missionText.text = $"ìƒìƒê´€ìœ¼ë¡œ ì´ë™í•˜ì„¸ìš”! ë‚¨ì€ ì‹œê°„: {Mathf.CeilToInt(remainingTime)}s";
         }
 
         Debug.Log("Quest accepted");
     }
 
-    // Äù½ºÆ® °ÅÀı
+    // í€˜ìŠ¤íŠ¸ ê±°ì ˆ
     public void DeclineQuest()
     {
         if (isQuestActive || questCompleted) return;
@@ -88,7 +96,7 @@ public class QuestManager_Guide : MonoBehaviour
         Debug.Log("Quest declined");
     }
 
-    // Äù½ºÆ® ¿Ï·á
+    // í€˜ìŠ¤íŠ¸ ì™„ë£Œ
     public void QuestComplete()
     {
         if (!isQuestActive) return;
@@ -96,36 +104,42 @@ public class QuestManager_Guide : MonoBehaviour
         isQuestActive = false;
         questCompleted = true;
 
-        // ÁøÇà Áß ¹Ì¼Ç ÆĞ³Î ¼û±â±â
+        // ì§„í–‰ ì¤‘ ë¯¸ì…˜ íŒ¨ë„ ìˆ¨ê¸°ê¸°
         if (missionPanel != null)
             missionPanel.SetActive(false);
 
-        // ¿Ï·á ÆĞ³Î Ç¥½Ã (ÀÎ½ºÆåÅÍ¿¡¼­ ¿¬°áµÈ ÆĞ³Î ±×´ë·Î »ç¿ë)
+        // ì™„ë£Œ íŒ¨ë„ í‘œì‹œ (ì¸ìŠ¤í™í„°ì—ì„œ ì—°ê²°ëœ íŒ¨ë„ ê·¸ëŒ€ë¡œ ì‚¬ìš©)
         if (questComplete != null)
+        {
             questComplete.SetActive(true);
+
+            guideContoller.isStopped = true;
+            
+        }
         if (Player != null)
         {
             CshController controller = Player.GetComponent<CshController>();
             if (controller != null)
             {
-                controller.gold += 100; // 1000°ñµå Áö±Ş
+                
+                controller.gold += 100; // 1000ê³¨ë“œ ì§€ê¸‰
             }
         }
 
         Debug.Log("Quest completed!");
     }
 
-    // Äù½ºÆ® ½ÇÆĞ
+    // í€˜ìŠ¤íŠ¸ ì‹¤íŒ¨
     private void QuestFailed()
     {
         isQuestActive = false;
         questFailed = true;
 
-        // ¹Ì¼Ç ÆĞ³Î ¼û±â±â
+        // ë¯¸ì…˜ íŒ¨ë„ ìˆ¨ê¸°ê¸°
         if (missionPanel != null)
             missionPanel.SetActive(false);
 
-        // ¿Ï·á/½ÇÆĞ ÆĞ³Î Ç¥½Ã (¿Ï·á ÆĞ³Î È°¿ë)
+        // ì™„ë£Œ/ì‹¤íŒ¨ íŒ¨ë„ í‘œì‹œ (ì™„ë£Œ íŒ¨ë„ í™œìš©)
         if (questFail != null)
             questFail.SetActive(true);
 
@@ -134,8 +148,8 @@ public class QuestManager_Guide : MonoBehaviour
             CshController controller = Player.GetComponent<CshController>();
             if (controller != null)
             {
-                controller.gold -= 100;        // 100°ñµå °¨¼Ò
-                if (controller.gold < 0)        // °ñµå À½¼ö ¹æÁö
+                controller.gold -= 100;        // 100ê³¨ë“œ ê°ì†Œ
+                if (controller.gold < 0)        // ê³¨ë“œ ìŒìˆ˜ ë°©ì§€
                     controller.gold = 0;
             }
         }
@@ -143,7 +157,7 @@ public class QuestManager_Guide : MonoBehaviour
         Debug.Log("Quest failed due to time out!");
     }
 
-    // ¿Ï·á/½ÇÆĞ ÆĞ³Î ´İ±â
+    // ì™„ë£Œ/ì‹¤íŒ¨ íŒ¨ë„ ë‹«ê¸°
     public void CloseCompletePanel()
     {
         if (questComplete != null)
@@ -155,11 +169,11 @@ public class QuestManager_Guide : MonoBehaviour
     {
         if (questFail != null)
             questFail.SetActive(false);
-        // ½ÇÆĞ »óÅÂ ÃÊ±âÈ­
+        // ì‹¤íŒ¨ ìƒíƒœ ì´ˆê¸°í™”
         questFailed = false;
     }
 
-    // ¿ÜºÎ Á¢±Ù¿ë ÇÁ·ÎÆÛÆ¼
+    // ì™¸ë¶€ ì ‘ê·¼ìš© í”„ë¡œí¼í‹°
     public bool IsQuestActive() => isQuestActive;
     public bool IsQuestCompleted() => questCompleted;
     public bool IsQuestFailed() => questFailed;

@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class QuestTrigger_Guide : MonoBehaviour
 {
-    public QuestManager questManager;   // QuestManager 연결
-
+    public QuestManager_Guide questManager;   // QuestManager 연결
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
@@ -17,7 +16,9 @@ public class QuestTrigger_Guide : MonoBehaviour
 
         // QuestWindow 활성화 (Inspector에서 미리 연결)
         if (questManager.questWindow != null)
-            questManager.questWindow.SetActive(true);
+        {
+            questManager.questWindow.SetActive(true);  
+        }
     }
 
     private void OnTriggerExit(Collider other)
