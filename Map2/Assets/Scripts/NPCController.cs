@@ -163,9 +163,10 @@ public class NPCController : MonoBehaviour
     }
 
     // 총알 충돌 감지
+    /*
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bullet"))
             OnHit(other.transform.position, 1);
-    }
+    }*/
 }
