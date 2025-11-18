@@ -146,6 +146,7 @@ public class QuestManager_Guide : MonoBehaviour
             CshController controller = Player.GetComponent<CshController>();
             if (controller != null)
             {
+
                 controller.gold -= 100;        // 100골드 감소
                 if (controller.gold < 0)        // 골드 음수 방지
                     controller.gold = 0;

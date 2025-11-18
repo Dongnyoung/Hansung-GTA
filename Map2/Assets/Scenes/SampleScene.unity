@@ -56774,7 +56774,7 @@ MonoBehaviour:
   completeText: {fileID: 845993519}
   questFail: {fileID: 421957129}
   failText: {fileID: 579539099}
-  questTimeLimit: 50
+  questTimeLimit: 10
 --- !u!4 &1060119064
 Transform:
   m_ObjectHideFlags: 0
@@ -66669,8 +66669,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: QuestManager, Assembly-CSharp
+      - m_Target: {fileID: 2066468854}
+        m_TargetAssemblyTypeName: QuestManager_Guide, Assembly-CSharp
         m_MethodName: OnClickConfirmButton
         m_Mode: 1
         m_Arguments:
@@ -110088,7 +110088,7 @@ MonoBehaviour:
   completeText: {fileID: 1085050289}
   questFail: {fileID: 608657422}
   failText: {fileID: 1992418980}
-  questTimeLimit: 50
+  questTimeLimit: 10
 --- !u!1 &2067067861
 GameObject:
   m_ObjectHideFlags: 0
