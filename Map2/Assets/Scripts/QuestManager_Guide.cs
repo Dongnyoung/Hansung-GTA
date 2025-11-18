@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
 using TMPro;
+using UnityEngine;
 
 public class QuestManager_Guide : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class QuestManager_Guide : MonoBehaviour
     private bool questCompleted = false;
     private bool questFailed = false;
 
+    public GameObject Info2;
+    private bool info2Shown = false;
+
     private void Start()
     {
         if (GuideNPC != null) GuideNPC = GameObject.FindWithTag("GuideNPC");
@@ -35,7 +39,8 @@ public class QuestManager_Guide : MonoBehaviour
         if (Player == null)
             Player = GameObject.FindWithTag("Player");
         remainingTime = questTimeLimit;
-
+        if (Info2 != null) Info2.SetActive(false);
+        info2Shown = false;
     }
 
     private void Update()
@@ -57,6 +62,10 @@ public class QuestManager_Guide : MonoBehaviour
             {
                 QuestFailed();
             }
+        }
+        if (questCompleted && !info2Shown && questComplete != null && !questComplete.activeSelf)
+        {
+            OpenInfo2(); // Info2를 켜는 함수 호출
         }
     }
 
@@ -123,6 +132,7 @@ public class QuestManager_Guide : MonoBehaviour
                 controller.gold += 100; // 1000골드 지급
             }
         }
+        
 
         Debug.Log("Quest completed!");
     }
@@ -159,8 +169,11 @@ public class QuestManager_Guide : MonoBehaviour
     // 완료/실패 패널 닫기
     public void CloseCompletePanel()
     {
-        if (questComplete != null)
+        if (questComplete != null) {
+            
             questComplete.SetActive(false);
+            
+        }
         questFailed = false;
     }
 
@@ -171,7 +184,23 @@ public class QuestManager_Guide : MonoBehaviour
         // 실패 상태 초기화
         questFailed = false;
     }
-
+    public void OpenInfo2()
+    {
+        if (Info2 != null)
+        {
+            Info2.SetActive(true);
+            info2Shown = true; // 플래그를 true로 설정하여 다시 켜지지 않게 함
+            Debug.Log("Update 감지 후 Info2가 활성화되었습니다.");
+        }
+    }
+    public void CloseInfo2()
+    {
+        if (Info2 != null && Info2.activeSelf)
+        {
+            Debug.Log("Info2 창을 닫습니다.");
+            Info2.SetActive(false);
+        }
+    }
     // 외부 접근용 프로퍼티
     public bool IsQuestActive() => isQuestActive;
     public bool IsQuestCompleted() => questCompleted;

@@ -1,5 +1,6 @@
-using UnityEngine;
+using System;
 using TMPro;
+using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class QuestManager : MonoBehaviour
     private bool questCompleted = false;
     private bool questFailed = false;
 
+    public GameObject Info3;
+    private bool info3Shown = false;
+
     private void Start()
     {
         if (questWindow != null) questWindow.SetActive(false);
@@ -32,6 +36,8 @@ public class QuestManager : MonoBehaviour
         if (Player == null)
             Player = GameObject.FindWithTag("Player");
         remainingTime = questTimeLimit;
+        if (Info3 != null) Info3.SetActive(false);
+        info3Shown = false;
     }
 
     private void Update()
@@ -53,6 +59,10 @@ public class QuestManager : MonoBehaviour
             {
                 QuestFailed();
             }
+        }
+        if (questCompleted && !info3Shown && questComplete != null && !questComplete.activeSelf)
+        {
+            OpenInfo3(); // Info2를 켜는 함수 호출
         }
     }
 
@@ -151,6 +161,23 @@ public class QuestManager : MonoBehaviour
         questFailed = false;
     }
 
+    public void OpenInfo3()
+    {
+        if (Info3 != null)
+        {
+            Info3.SetActive(true);
+            info3Shown = true; // 플래그를 true로 설정하여 다시 켜지지 않게 함
+            Debug.Log("Update 감지 후 Info3가 활성화되었습니다.");
+        }
+    }
+    public void CloseInfo3()
+    {
+        if (Info3 != null && Info3.activeSelf)
+        {
+            Debug.Log("Info3 창을 닫습니다.");
+            Info3.SetActive(false);
+        }
+    }
     public void OnClickConfirmButton()
     {
         if (questFail != null)
