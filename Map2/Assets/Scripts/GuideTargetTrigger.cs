@@ -3,7 +3,7 @@ using UnityEngine;
 public class GuideTargetTrigger : MonoBehaviour
 {
     public QuestManager_Guide questManager;
-    public GuideNPCController controller;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
@@ -11,7 +11,6 @@ public class GuideTargetTrigger : MonoBehaviour
         if (questManager != null && questManager.IsQuestActive())
         {
             questManager.QuestComplete();
-            controller.enabled = false;
 
         }
     }

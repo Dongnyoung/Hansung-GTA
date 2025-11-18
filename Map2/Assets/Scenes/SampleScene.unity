@@ -29614,7 +29614,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questManager: {fileID: 2066468854}
-  controller: {fileID: 0}
 --- !u!1 &585046271
 GameObject:
   m_ObjectHideFlags: 0
@@ -62303,6 +62302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followDistance: 2
   moveSpeed: 2
+  isStopped: 0
 --- !u!1 &1197550116
 GameObject:
   m_ObjectHideFlags: 0
@@ -110081,7 +110081,6 @@ MonoBehaviour:
   Player: {fileID: 0}
   guideContoller: {fileID: 1193266822}
   GuideNPC: {fileID: 0}
-  guideAnimator: {fileID: 0}
   questWindow: {fileID: 755303442}
   missionPanel: {fileID: 1015840627}
   missionText: {fileID: 1205334140}

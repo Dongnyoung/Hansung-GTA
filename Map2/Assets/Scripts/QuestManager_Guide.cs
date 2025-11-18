@@ -6,7 +6,6 @@ public class QuestManager_Guide : MonoBehaviour
     public GameObject Player;
     public GuideNPCController guideContoller;
     public GameObject GuideNPC;
-    public Animator guideAnimator;
     [Header("UI References")]
     public GameObject questWindow;
     public GameObject missionPanel;
@@ -37,7 +36,6 @@ public class QuestManager_Guide : MonoBehaviour
             Player = GameObject.FindWithTag("Player");
         remainingTime = questTimeLimit;
 
-        guideAnimator = GuideNPC.GetComponent<Animator>();
     }
 
     private void Update()
