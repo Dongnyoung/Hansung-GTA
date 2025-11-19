@@ -7,86 +7,144 @@ using UnityEngine.UI;
 
 public class cshUIManager : MonoBehaviour
 {
-    [SerializeField]
-    public GameObject Player; // 플레이어 오브젝트를 저장할 변수
-    public TextMeshProUGUI hptext; // HP(체력)를 표시할 텍스트
-    public TextMeshProUGUI PlayTimetext; // 게임 시간을 표시할 텍스트
-    public TextMeshProUGUI goldText; // Inspector에서 연결
-    [SerializeField]
-    public TextMeshProUGUI runningGazetxt; // 달리기 게이지를 표시할 텍스트
-    public Image hpImage; // HP(체력)을 시각적으로 표시할 이미지(UI 바)
-    public Image runningGazeImage; // 달리기 게이지를 시각적으로 표시할 이미지(UI 바)
-    float gameTime; // 게임이 진행된 시간을 저장하는 변수
-    [SerializeField]
-    CshController controller; // 플레이어 컨트롤러 스크립트 참조
+    [SerializeField] public GameObject Player;
+    public TextMeshProUGUI hptext;
+    public TextMeshProUGUI PlayTimetext;
+    public TextMeshProUGUI goldText;
+    [SerializeField] public TextMeshProUGUI runningGazetxt;
 
-    [SerializeField]
-    public GameObject Info1; // 첫 번째 미션 정보 패널/UI
-    public float infoDisplayStartTime = 2.0f; // Info1 활성화 시작 시간
-    public float infoDisplayDuration = 5.0f; // Info1 표시 지속 시간
-    private bool info1Shown = false; // Info1이 이미 표시되었는지 추적하는 플래그
+    public Image hpImage;
+    public Image runningGazeImage;
+
+    float gameTime;
+
+    [SerializeField] CshController controller;
+
+    // --- GameOver ---
+    public GameObject gameOverUI;
+    private bool isGameOver = false;
+
+    // --- InfoBase (버튼으로만 닫힘) ---
+    [SerializeField] public GameObject InfoBase;
+    public float infoBaseStartTime = 0.5f;
+    private bool infoBaseShown = false;
+    private bool infoBaseClosed = false;
+
+    // --- Info1 ---
+    [SerializeField] public GameObject Info1;
+    public float info1Delay = 1.0f;        // InfoBase 닫힌 후 Info1 뜨는 딜레이
+    public float info1Duration = 5.0f;
+    private bool info1Shown = false;
+    private float info1StartTime = -1f;    // InfoBase 닫힌 시점을 기록
+
 
     void Start()
     {
-        gameTime = 0.0f; // 시작 시 게임 시간 초기화
-        Player = GameObject.FindWithTag("Player"); // "Player" 태그를 가진 오브젝트를 찾아 저장
-        // myPlayerController 대신 CshController 사용
+        gameTime = 0.0f;
+
+        Player = GameObject.FindWithTag("Player");
         controller = Player.GetComponent<CshController>();
 
-        // 시작할 때 Info1을 비활성화 상태로 둡니다.
+        if (InfoBase != null)
+            InfoBase.SetActive(false);
+
         if (Info1 != null)
-        {
             Info1.SetActive(false);
-        }
+
+        if (gameOverUI != null)
+            gameOverUI.SetActive(false);
     }
 
-    // 매 프레임마다 호출되는 함수
+
     void Update()
     {
-        gameTime += Time.deltaTime; // 매 프레임마다 경과 시간 더하기
+        if (isGameOver)
+            return;
+        gameTime += Time.deltaTime;
 
-        // 미션정보
-        if (Info1 != null)
+
+        //       InfoBase 표시 (자동 닫힘 없음)
+        if (!infoBaseShown && gameTime >= infoBaseStartTime)
         {
-            if (!info1Shown && gameTime >= infoDisplayStartTime)
+            InfoBase.SetActive(true);
+            infoBaseShown = true;
+        }
+
+
+        //     Info1 표시 (InfoBase 닫힌 후부터 시간 계산)
+        if (infoBaseClosed)
+        {
+            // InfoBase 꺼진 후 딜레이 뒤 Info1 표시
+            if (!info1Shown && gameTime >= info1StartTime + info1Delay)
             {
-                // 지정된 시간이 되면 Info1 활성화
                 Info1.SetActive(true);
-                info1Shown = true; // 표시되었다고 기록
+                info1Shown = true;
             }
 
-            // Info1 활성화 후 지정된 지속 시간이 지나면 비활성화
-            if (info1Shown && gameTime >= infoDisplayStartTime + infoDisplayDuration)
+            // InfoBase 닫힌 후부터 info1Duration 뒤 Info1 자동 닫힘
+            if (info1Shown && gameTime >= info1StartTime + info1Delay + info1Duration)
             {
                 Info1.SetActive(false);
             }
-            
         }
-        
 
-        // 플레이 시간을 소수 둘째 자리까지 표시
-        PlayTimetext.text = $"Time : {gameTime.ToString("F2")}";
 
-        // 체력 바의 채워진 정도를 HP 비율로 설정
+        //            UI 갱신
+        PlayTimetext.text = $"Time : {gameTime:F2}";
+
         if (controller != null)
         {
             hpImage.fillAmount = controller.HP / controller.maxHP;
-
-            // 달리기 게이지 바의 채워진 정도를 현재 게이지 비율로 설정
             runningGazeImage.fillAmount = controller.currentRunningGaze / controller.maxRunningGaze;
 
-            //장학금 텍스트 업데이트
             if (goldText != null)
-            {
                 goldText.text = $"Gold : {controller.gold}";
-            }
+        }
+
+        if (!isGameOver && controller.HP <= 0)
+        {
+            GameOver();
         }
     }
+
+    public void GameOver()
+    {
+        isGameOver = true;
+
+        if (gameOverUI != null)
+            gameOverUI.SetActive(true);
+
+        // 플레이어 움직임 정지
+        if (Player != null)
+        {
+            CshController cont = Player.GetComponent<CshController>();
+            if (cont != null)
+                cont.enabled = false;
+        }
+
+        Debug.Log("Game Over triggered!");
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void CloseInfoBase()
+    {
+        if (InfoBase != null)
+        {
+            InfoBase.SetActive(false);
+            infoBaseClosed = true;
+
+            info1StartTime = gameTime;
+        }
+    }
+
     public void CloseInfo1()
     {
         if (Info1 != null)
         {
-            Debug.Log("Info1 창을 닫습니다.");
             Info1.SetActive(false);
         }
     }

@@ -160,7 +160,13 @@ public class QuestManager_Guide : MonoBehaviour
                 controller.gold -= 100;        // 100골드 감소
                 if (controller.gold < 0)        // 골드 음수 방지
                     controller.gold = 0;
+
+                controller.HP -= 3f;
+                if (controller.HP < 0)
+                    controller.HP = 0; // 체력이 음수가 되면 0으로 고정
+
             }
+
         }
 
         Debug.Log("Quest failed due to time out!");
