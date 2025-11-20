@@ -8,6 +8,9 @@ TagManager:
   - Ground
   - GuideNPC
   - GuideCompletedZone
+  - MissionArrow
+  - MissionStartArrow
+  - MissionCompletedArrow
   layers:
   - Default
   - TransparentFX

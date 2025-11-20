@@ -33,10 +33,16 @@ public class QuestManager_Guide : MonoBehaviour
     private Vector3 guideStartPos;
     private Vector3 guideCompletePos;
     private GameObject completedZone;
+
+    private GameObject missionStartArrow;
+    private GameObject missionCompletedArrow;
+
     private void Start()
     {
         if (GuideNPC == null) GuideNPC = GameObject.FindWithTag("GuideNPC");
         if (completedZone == null) completedZone = GameObject.FindWithTag("GuideCompletedZone");
+        if (missionCompletedArrow == null) missionCompletedArrow = GameObject.FindWithTag("MissionCompletedArrow");
+        if (missionStartArrow == null) missionStartArrow = GameObject.FindWithTag("MissionStartArrow");
         if (questWindow != null) questWindow.SetActive(false);
         if (missionPanel != null) missionPanel.SetActive(false);
         if (questComplete != null) questComplete.SetActive(false);
@@ -50,6 +56,14 @@ public class QuestManager_Guide : MonoBehaviour
         {
             guideStartPos = GuideNPC.transform.position;
             guideCompletePos = completedZone.transform.position;
+        }
+        if(missionCompletedArrow != null)
+        {
+            missionCompletedArrow.SetActive(false);
+        }
+        if (missionStartArrow != null)
+        {
+            missionStartArrow.SetActive(true);
         }
     }
 
@@ -95,7 +109,8 @@ public class QuestManager_Guide : MonoBehaviour
             guideContoller.isStopped = false;
             guideContoller.enabled = true;
             missionPanel.SetActive(true);
-            
+            missionCompletedArrow.SetActive(true);
+            missionStartArrow.SetActive(false);
             if (missionText != null)
                 missionText.text = $"상상관으로 이동하세요! 남은 시간: {Mathf.CeilToInt(remainingTime)}s";
         }
@@ -132,7 +147,7 @@ public class QuestManager_Guide : MonoBehaviour
             questComplete.SetActive(true);
 
             guideContoller.isStopped = true;
-
+            missionCompletedArrow.SetActive(false);
         }
         if (GuideNPC != null)
         {
