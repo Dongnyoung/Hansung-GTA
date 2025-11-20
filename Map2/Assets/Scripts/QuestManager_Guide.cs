@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class QuestManager_Guide : MonoBehaviour
 {
@@ -29,9 +30,13 @@ public class QuestManager_Guide : MonoBehaviour
     public GameObject Info2;
     private bool info2Shown = false;
 
+    private Vector3 guideStartPos;
+    private Vector3 guideCompletePos;
+    private GameObject completedZone;
     private void Start()
     {
-        if (GuideNPC != null) GuideNPC = GameObject.FindWithTag("GuideNPC");
+        if (GuideNPC == null) GuideNPC = GameObject.FindWithTag("GuideNPC");
+        if (completedZone == null) completedZone = GameObject.FindWithTag("GuideCompletedZone");
         if (questWindow != null) questWindow.SetActive(false);
         if (missionPanel != null) missionPanel.SetActive(false);
         if (questComplete != null) questComplete.SetActive(false);
@@ -41,6 +46,11 @@ public class QuestManager_Guide : MonoBehaviour
         remainingTime = questTimeLimit;
         if (Info2 != null) Info2.SetActive(false);
         info2Shown = false;
+        if (GuideNPC != null)
+        {
+            guideStartPos = GuideNPC.transform.position;
+            guideCompletePos = completedZone.transform.position;
+        }
     }
 
     private void Update()
@@ -82,6 +92,7 @@ public class QuestManager_Guide : MonoBehaviour
 
         if (missionPanel != null)
         {
+            guideContoller.isStopped = false;
             guideContoller.enabled = true;
             missionPanel.SetActive(true);
             
@@ -123,6 +134,10 @@ public class QuestManager_Guide : MonoBehaviour
             guideContoller.isStopped = true;
 
         }
+        if (GuideNPC != null)
+        {
+            GuideNPC.transform.position = guideCompletePos;
+        }
         if (Player != null)
         {
             CshController controller = Player.GetComponent<CshController>();
@@ -149,8 +164,16 @@ public class QuestManager_Guide : MonoBehaviour
 
         // 완료/실패 패널 표시 (완료 패널 활용)
         if (questFail != null)
+        {
             questFail.SetActive(true);
-
+            guideContoller.isStopped = true;
+           
+        }
+        if (GuideNPC != null)
+        {
+            GuideNPC.transform.position = guideStartPos;
+            
+        }
         if (Player != null)
         {
             CshController controller = Player.GetComponent<CshController>();

@@ -63558,7 +63558,7 @@ GameObject:
   - component: {fileID: 1187389672}
   m_Layer: 0
   m_Name: QuestCompletedZone
-  m_TagString: Untagged
+  m_TagString: GuideCompletedZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112564,7 +112564,7 @@ MonoBehaviour:
   completeText: {fileID: 1085050289}
   questFail: {fileID: 608657422}
   failText: {fileID: 1992418980}
-  questTimeLimit: 1
+  questTimeLimit: 10
   Info2: {fileID: 1419082202}
 --- !u!1 &2067067861
 GameObject:
