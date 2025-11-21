@@ -27,22 +27,21 @@ public class QuestManager_Exam : MonoBehaviour
 
     private int currentIndex = 0;                // 현재 문제 번호
 
-    // ===========================
     // 퀘스트 상태
-    // ===========================
     private bool questTaken = false;             // 퀘스트를 이미 받았는지
     private bool questCompleted = false;         // 성공 완료 여부
 
-    // ===========================
+
+    public QuestManager deliverQuestManager;
+
     // 초기 상태 설정
-    // ===========================
     void Start()
     {
         questWindow.SetActive(false);
         missionUIPanel.SetActive(false);
         questFailedPanel.SetActive(false);
         questCompletedPanel.SetActive(false);
-
+        if(deliverQuestManager==null) deliverQuestManager = GameObject.FindWithTag("DeliverQuest").GetComponent<QuestManager>();
         foreach (var panel in questionPanels)
             panel.SetActive(false);
     }
@@ -74,7 +73,10 @@ public class QuestManager_Exam : MonoBehaviour
 
         missionUIPanel.SetActive(true);
         isTimerRunning = true;
-
+        if (deliverQuestManager != null)
+        {
+            deliverQuestManager.thirdMissionArrow.SetActive(false);
+        }
         ShowQuestion(currentIndex);
     }
 

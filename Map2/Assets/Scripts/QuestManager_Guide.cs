@@ -34,15 +34,19 @@ public class QuestManager_Guide : MonoBehaviour
     private Vector3 guideCompletePos;
     private GameObject completedZone;
 
-    private GameObject missionStartArrow;
-    private GameObject missionCompletedArrow;
+    public GameObject missionStartArrow;
+    public GameObject missionCompletedArrow;
 
+    public GameObject secondMissionStartArrow;
+    public GameObject secondMissionCompletedArrow;
     private void Start()
     {
         if (GuideNPC == null) GuideNPC = GameObject.FindWithTag("GuideNPC");
         if (completedZone == null) completedZone = GameObject.FindWithTag("GuideCompletedZone");
         if (missionCompletedArrow == null) missionCompletedArrow = GameObject.FindWithTag("MissionCompletedArrow");
         if (missionStartArrow == null) missionStartArrow = GameObject.FindWithTag("MissionStartArrow");
+        if (secondMissionStartArrow == null) secondMissionStartArrow = GameObject.FindWithTag("SecondMissionStartArrow");
+        if (secondMissionCompletedArrow == null) secondMissionCompletedArrow = GameObject.FindWithTag("SecondMissionCompletedArrow");
         if (questWindow != null) questWindow.SetActive(false);
         if (missionPanel != null) missionPanel.SetActive(false);
         if (questComplete != null) questComplete.SetActive(false);
@@ -64,6 +68,14 @@ public class QuestManager_Guide : MonoBehaviour
         if (missionStartArrow != null)
         {
             missionStartArrow.SetActive(true);
+        }
+        if (secondMissionStartArrow != null)
+        {
+            secondMissionStartArrow.SetActive(false);
+        }
+        if(secondMissionCompletedArrow != null)
+        {
+            secondMissionCompletedArrow.SetActive(false);
         }
     }
 
@@ -235,6 +247,10 @@ public class QuestManager_Guide : MonoBehaviour
             Info2.SetActive(true);
             info2Shown = true; // 플래그를 true로 설정하여 다시 켜지지 않게 함
             Debug.Log("Update 감지 후 Info2가 활성화되었습니다.");
+        }
+        if(secondMissionStartArrow != null)
+        {
+            secondMissionStartArrow.SetActive(true);
         }
     }
     public void CloseInfo2()

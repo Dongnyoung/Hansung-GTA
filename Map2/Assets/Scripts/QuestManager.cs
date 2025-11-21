@@ -27,17 +27,26 @@ public class QuestManager : MonoBehaviour
     public GameObject Info3;
     private bool info3Shown = false;
 
+    public QuestManager_Guide guideQuestManager;
+
+    public GameObject thirdMissionArrow;
+   
     private void Start()
     {
         if (questWindow != null) questWindow.SetActive(false);
         if (missionPanel != null) missionPanel.SetActive(false);
         if (questComplete != null) questComplete.SetActive(false);
-        if (questFail != null) questFail.SetActive(false);
+        
+        if(guideQuestManager==null) guideQuestManager = GameObject.FindWithTag("GuideQuest").GetComponent<QuestManager_Guide>();
+        if (thirdMissionArrow == null) thirdMissionArrow = GameObject.FindWithTag("ThirdMissionArrow");
+        if (questFail != null) questFail.SetActive(false); 
         if (Player == null)
             Player = GameObject.FindWithTag("Player");
         remainingTime = questTimeLimit;
         if (Info3 != null) Info3.SetActive(false);
         info3Shown = false;
+        
+        if(thirdMissionArrow!=null) thirdMissionArrow.SetActive(false);
     }
 
     private void Update()
@@ -80,10 +89,16 @@ public class QuestManager : MonoBehaviour
         if (missionPanel != null)
         {
             missionPanel.SetActive(true);
+            
             if (missionText != null)
                 missionText.text = $"배달 중... \n목적지로 이동하세요! \n남은 시간: {Mathf.CeilToInt(remainingTime)}s";
         }
-
+        if(guideQuestManager != null)
+        {
+            
+            guideQuestManager.secondMissionStartArrow.SetActive(false);
+            guideQuestManager.secondMissionCompletedArrow.SetActive(true);
+        }
         Debug.Log("Quest accepted");
     }
 
@@ -121,7 +136,14 @@ public class QuestManager : MonoBehaviour
                 controller.gold += 100; // 1000골드 지급
             }
         }
-
+        if (guideQuestManager != null)
+        {
+            guideQuestManager.secondMissionCompletedArrow.SetActive(false);
+        }
+        if (thirdMissionArrow != null)
+        {
+            thirdMissionArrow.SetActive(true);
+        }
         Debug.Log("Quest completed!");
     }
 

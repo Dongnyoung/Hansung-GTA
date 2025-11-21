@@ -37,6 +37,7 @@ public class cshUIManager : MonoBehaviour
     private bool info1Shown = false;
     private float info1StartTime = -1f;    // InfoBase ´ÝÈù ½ÃÁ¡À» ±â·Ï
 
+  
 
     void Start()
     {
@@ -44,7 +45,7 @@ public class cshUIManager : MonoBehaviour
 
         Player = GameObject.FindWithTag("Player");
         controller = Player.GetComponent<CshController>();
-
+        
         if (InfoBase != null)
             InfoBase.SetActive(false);
 
@@ -53,6 +54,7 @@ public class cshUIManager : MonoBehaviour
 
         if (gameOverUI != null)
             gameOverUI.SetActive(false);
+   
     }
 
 

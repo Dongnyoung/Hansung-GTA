@@ -11,6 +11,11 @@ TagManager:
   - MissionArrow
   - MissionStartArrow
   - MissionCompletedArrow
+  - SecondMissionStartArrow
+  - SecondMissionCompletedArrow
+  - GuideQuest
+  - ThirdMissionArrow
+  - DeliverQuest
   layers:
   - Default
   - TransparentFX
