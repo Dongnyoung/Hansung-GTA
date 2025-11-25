@@ -133,7 +133,7 @@ public class QuestManager : MonoBehaviour
             CshController controller = Player.GetComponent<CshController>();
             if (controller != null)
             {
-                controller.gold += 100; // 1000°ñµå Áö±Þ
+                controller.gold += 150; // 1000°ñµå Áö±Þ
             }
         }
         if (guideQuestManager != null)
@@ -166,9 +166,6 @@ public class QuestManager : MonoBehaviour
             CshController controller = Player.GetComponent<CshController>();
             if (controller != null)
             {
-                controller.gold -= 100;        // 100°ñµå °¨¼Ò
-                if (controller.gold < 0)        // °ñµå À½¼ö ¹æÁö
-                    controller.gold = 0;
 
                 controller.HP -= 3f;
                 if (controller.HP < 0)

@@ -100,7 +100,7 @@ public class cshUIManager : MonoBehaviour
             runningGazeImage.fillAmount = controller.currentRunningGaze / controller.maxRunningGaze;
 
             if (goldText != null)
-                goldText.text = $"Gold : {controller.gold}";
+                goldText.text = $"Point : {controller.gold}";
         }
 
         if (!isGameOver && controller.HP <= 0)

@@ -33492,9 +33492,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC544.... \uC624\uB298 \uBC30\uB2EC\uC774 \uB108\uBB34 \uB2A6\uAD70.....
-    \uC74C\uC2DD\uAC12 \uD658\uBD88\uC740 \uB108\uD55C\uD14C \uBC1B\uC73C\uB9C8...
-    \n(\uD55C\uC131 \uC7A5\uD559\uAE08\uC744 \uC783\uC2B5\uB2C8\uB2E4.)\n- 100$"
+  m_text: "\uC74C.... \uC624\uB298 \uBC30\uB2EC\uC774 \uB108\uBB34 \uB2A6\uAD70.....
+    \n(HP -3)\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
   m_sharedMaterial: {fileID: 1096618180023504553, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
@@ -36697,7 +36696,7 @@ MonoBehaviour:
   - {fileID: 326674773}
   - {fileID: 787779098}
   correctAnswerIndex: 00000000010000000200000003000000
-  totalTime: 100
+  totalTime: 1
   deliverQuestManager: {fileID: 0}
   Info4: {fileID: 437920215}
   secondMissionStartArrow: {fileID: 0}
@@ -38516,7 +38515,7 @@ GameObject:
   - component: {fileID: 659508011}
   - component: {fileID: 659508010}
   m_Layer: 5
-  m_Name: GoldText
+  m_Name: PointText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38561,7 +38560,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gold:'
+  m_text: 'Point:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -39336,7 +39335,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uAC8C\uC784 \uB8F0\n\n1. \uAE30\uBCF8 \uC6C0\uC9C1\uC784 WASD, \uB2EC\uB9AC\uAE30
-    SHIFT\n2. Gold \uC810\uC218\n( \uBBF8\uC158 \uC131\uACF5 \uC2DC,  \uACE8\uB4DC
+    SHIFT\n2. Point \uC810\uC218\n( \uBBF8\uC158 \uC131\uACF5 \uC2DC,  \uBE44\uAD50\uACFC\uD3EC\uC778\uD2B8
     \uC99D\uAC00 ) \n3. HP \uCCB4\uB825\n( \uBBF8\uC158 \uC2E4\uD328 \uC2DC, HP\uAC10\uC18C
     )\n4. \uBE68\uAC04\uC874 \uC548\uC5D0 \uB4E4\uC5B4\uAC00\uBA74 \uBBF8\uC158 \uC2DC\uC791!!!!"
   m_isRightToLeft: 0
@@ -42016,7 +42015,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uACF5\uBD80 \uB2E4\uC2DC \uD588\uC628\uB098!!!\n- 100$/HP -3"
+  m_text: "\uACF5\uBD80 \uB2E4\uC2DC \uD588\uC628\uB098!!!\n(HP -3)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
   m_sharedMaterial: {fileID: 1096618180023504553, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
@@ -50810,9 +50809,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uACE0\uC0DD\uD588\uB124....\n\uC774\uAC74 \uB110 \uC704\uD55C \uC7A5\uD559\uAE08\uC774\uB780\uB2E4.\n\uB123\uC5B4\uB46C
-    \uB123\uC5B4\uB46C!\n(\uD55C\uC131 \uC7A5\uD559\uAE08\uC744 \uD68D\uB4DD\uD569\uB2C8\uB2E4.)\n+
-    100$"
+  m_text: "\uACE0\uC0DD\uD588\uB124....\n\uC790.. \uC9C0\uAE08 \uBE44\uAD50\uACFC\uD3EC\uC778\uD2B8
+    150\uD3EC\uC778\uD2B8 \uC9C0\uAE09\uD588\uB2E4.\n(\uBE44\uAD50\uACFC\uD3EC\uC778\uD2B8
+    +150)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
   m_sharedMaterial: {fileID: 1096618180023504553, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
@@ -52835,7 +52834,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC548\uB155\uD558\uC138\uC694.  000 \uAD50\uC218\uB2D8 \uD584\uBC84\uAC70\n\uBC30\uB2EC
     \uC880 \uBD80\uD0C1\uD560\uAC8C\uC694.  \uAD50\uC218\uB2D8\uC740 \uC544\uB9C8
-    \uBC16\uC5D0\uC11C \uB4DC\uC2E4\uAC81\uB2C8\uB2E4.\n\uC7A5\uD559\uAE08 \uB4DC\uB9B4\uAC8C."
+    \uBC16\uC5D0\uC11C \uB4DC\uC2E4\uAC81\uB2C8\uB2E4.\n\uBE44\uAD50\uACFC\uD3EC\uC778\uD2B8
+    \uB4DC\uB9B4\uAC8C\uC694.\n(\uC131\uACF5\uC2DC, \uBE44\uAD50\uACFC\uD3EC\uC778\uD2B8
+    +150)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
   m_sharedMaterial: {fileID: 1096618180023504553, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
@@ -64932,7 +64933,7 @@ MonoBehaviour:
   completeText: {fileID: 845993519}
   questFail: {fileID: 421957129}
   failText: {fileID: 579539099}
-  questTimeLimit: 50
+  questTimeLimit: 1
   Info3: {fileID: 2029741536}
   guideQuestManager: {fileID: 0}
   thirdMissionArrow: {fileID: 0}
@@ -66469,8 +66470,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uACE0\uB9C8\uC6CC\uC694!!!!!!!!!!!\n\uB355\uBD84\uC5D0 \uD559\uAD50 \uC798
-    \uB2E4\uB2D0 \uC218 \uC788\uC744\uAC70 \uAC19\uC544\uC694!!!!\n(\uD55C\uC131
-    \uC7A5\uD559\uAE08\uC744 \uD68D\uB4DD\uD569\uB2C8\uB2E4.)\n+ 100$"
+    \uB2E4\uB2D0 \uC218 \uC788\uC744\uAC70 \uAC19\uC544\uC694!!!!\n(\uBE44\uAD50\uACFC\uD3EC\uC778\uD2B8
+    +150)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
   m_sharedMaterial: {fileID: 1096618180023504553, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
@@ -67500,7 +67501,8 @@ MonoBehaviour:
   m_text: "\uC74C \uC2DC\uD5D8\uCE58\uB7EC \uC654\uAD6C\uB098 \uACF5\uBD80 \uB2E8\uB2E8\uD788
     \uD574\uC654\uACA0\uC9C0?...\n\uC774 \uBCF8\uC88C\uC758 \uAD50\uC218\uB2D8\uC740
     \uB2E8 1\uAC1C\uC758 \uC624\uB2F5\uC744 \uB0B4\uB294 \uC21C\uAC04 \uB0B4\uBCF4\uB0B4\uBC84\uB9B4\uAC83\uC774\uB2E4.\n\uADF8\uB7EC\uB2C8
-    \uC0DD\uAC01 \uC798\uD558\uACE0 \uC218\uB77D \uBC84\uD2BC\uC744 \uB204\uB974\uC2DC\uAC8C...."
+    \uC0DD\uAC01 \uC798\uD558\uACE0 \uC218\uB77D \uBC84\uD2BC\uC744 \uB204\uB974\uC2DC\uAC8C....\n(\uC131\uACF5\uC2DC,
+    \uBE44\uAD50\uACFC\uD3EC\uC778\uD2B8 +500)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
   m_sharedMaterial: {fileID: 1096618180023504553, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
@@ -71027,7 +71029,8 @@ MonoBehaviour:
   m_text: "\uD751\uD751\uD751... \uD55C\uC131\uB300\uD559\uAD50 \uCC98\uC74C \uC628
     \uB274\uBE44\uC778\uB370 \uAE38\uC744 \uC798 \uBAA8\uB974\uACA0\uC5B4\uC694...\n\uD639\uC2DC
     \uD55C\uC131\uB300\uD559\uAD50 \uAC19\uC774 \uB2E4\uB2C8\uBA74\uC11C \uC18C\uAC1C
-    \uAC00\uB2A5\uD560\uAE4C\uC694?\n\uBCF4\uC218 \uCDA9\uBD84\uD788 \uB4DC\uB9B4\uAC8C\uC694..."
+    \uAC00\uB2A5\uD560\uAE4C\uC694?\n(\uC131\uACF5\uC2DC, \uBE44\uAD50\uACFC\uD3EC\uC778\uD2B8
+    +150)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
   m_sharedMaterial: {fileID: 1096618180023504553, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
@@ -73969,10 +73972,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB108 \uC774 \uB1E8\uC11D \uC2EC\uC0C1\uCE58 \uC54A\uC740 \uD559\uC0DD\uAD70....\n\uB0B4\uAC00
-    \uB108\uC758 \uC7A0\uC7AC\uB825\uC744 \uC0AC\uB9C8\n\uC790, \uB110 \uC704\uD55C
-    \uD1B5\uD070 \uC9C0\uC6D0\uAE08\uC774\uB2E4!!!!\n(\uD55C\uC131 \uC7A5\uD559\uAE08\uC744
-    \uD68D\uB4DD\uD569\uB2C8\uB2E4.)\n+ 10000$"
+  m_text: "\uB108 \uC774 \uB1E8\uC11D \uB611\uB611\uD55C \uD559\uC0DD\uAD70.... \uACE0\uC0DD\uD588\uB124!!!\n\uC790,
+    \uBE44\uAD50\uACFC\uD3EC\uC778\uD2B8 \uB450\uB451\uD788 \uB123\uC5B4\uC8FC\uB9C8!\n(\uBE44\uAD50\uACFC\uD3EC\uC778\uD2B8
+    +500)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
   m_sharedMaterial: {fileID: 1096618180023504553, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
@@ -120724,8 +120726,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC544\uD558\uD558..........\n(\uD55C\uC131 \uC7A5\uD559\uAE08\uC744 \uC783\uC2B5\uB2C8\uB2E4.)\n-
-    100$"
+  m_text: "\uC544\uD558\uD558........ \n(HP -3)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
   m_sharedMaterial: {fileID: 1096618180023504553, guid: 6d1eda205fb261a43aac5927ca59c8a3, type: 2}
@@ -125938,7 +125939,7 @@ MonoBehaviour:
   completeText: {fileID: 1085050289}
   questFail: {fileID: 608657422}
   failText: {fileID: 1992418980}
-  questTimeLimit: 50
+  questTimeLimit: 1
   Info2: {fileID: 1419082202}
   missionStartArrow: {fileID: 0}
   missionCompletedArrow: {fileID: 0}

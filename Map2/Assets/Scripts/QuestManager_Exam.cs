@@ -191,7 +191,7 @@ public class QuestManager_Exam : MonoBehaviour
             CshController controller = Player.GetComponent<CshController>();
             if (controller != null)
             {
-                controller.gold += 10000;
+                controller.gold += 500;
             }
         }
     }
@@ -216,8 +216,6 @@ public class QuestManager_Exam : MonoBehaviour
             CshController controller = Player.GetComponent<CshController>();
             if (controller != null)
             {
-                controller.gold -= 100;
-                if (controller.gold < 0) controller.gold = 0;
 
                 controller.HP -= 3f;
                 if (controller.HP < 0) controller.HP = 0;

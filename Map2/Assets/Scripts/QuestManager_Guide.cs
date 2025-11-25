@@ -171,7 +171,7 @@ public class QuestManager_Guide : MonoBehaviour
             if (controller != null)
             {
                 
-                controller.gold += 100; // 1000골드 지급
+                controller.gold += 150; // 1000골드 지급
             }
         }
         
@@ -206,11 +206,6 @@ public class QuestManager_Guide : MonoBehaviour
             CshController controller = Player.GetComponent<CshController>();
             if (controller != null)
             {
-
-                controller.gold -= 100;        // 100골드 감소
-                if (controller.gold < 0)        // 골드 음수 방지
-                    controller.gold = 0;
-
                 controller.HP -= 3f;
                 if (controller.HP < 0)
                     controller.HP = 0; // 체력이 음수가 되면 0으로 고정
