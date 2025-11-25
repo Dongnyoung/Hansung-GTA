@@ -39,6 +39,7 @@ public class QuestManager_Exam : MonoBehaviour
 
     public GameObject secondMissionStartArrow;
 
+    public GameObject EndingArrow;
 
     // ---------------------------
     // 초기 설정
@@ -49,7 +50,7 @@ public class QuestManager_Exam : MonoBehaviour
         missionUIPanel.SetActive(false);
         questFailedPanel.SetActive(false);
         questCompletedPanel.SetActive(false);
-
+        if (EndingArrow == null) EndingArrow = GameObject.FindWithTag("EndingArrow");
         if (deliverQuestManager == null)
         {
             GameObject found = GameObject.FindWithTag("DeliverQuest");
@@ -66,6 +67,7 @@ public class QuestManager_Exam : MonoBehaviour
 
         if (secondMissionStartArrow != null)
             secondMissionStartArrow.SetActive(false);
+        if(EndingArrow!=null) EndingArrow.SetActive(false);
     }
 
     // ---------------------------
@@ -193,6 +195,10 @@ public class QuestManager_Exam : MonoBehaviour
             {
                 controller.gold += 500;
             }
+        }
+        if(EndingArrow != null)
+        {
+            EndingArrow.SetActive(true);
         }
     }
 

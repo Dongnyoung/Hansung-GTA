@@ -36944,6 +36944,7 @@ MonoBehaviour:
   deliverQuestManager: {fileID: 0}
   Info4: {fileID: 437920215}
   secondMissionStartArrow: {fileID: 0}
+  EndingArrow: {fileID: 0}
 --- !u!1001 &629321126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38201,7 +38202,7 @@ GameObject:
   - component: {fileID: 648732478}
   m_Layer: 0
   m_Name: MissionArrow
-  m_TagString: MissionStartArrow
+  m_TagString: EndingArrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65386,7 +65387,7 @@ MonoBehaviour:
   failText: {fileID: 579539099}
   questTimeLimit: 50
   Info3: {fileID: 2029741536}
-  guideQuestManager: {fileID: 0}
+  guideQuestManager: {fileID: 2066468854}
   thirdMissionArrow: {fileID: 0}
 --- !u!4 &1060119064
 Transform:

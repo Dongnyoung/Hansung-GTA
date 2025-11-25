@@ -16,6 +16,7 @@ TagManager:
   - GuideQuest
   - ThirdMissionArrow
   - DeliverQuest
+  - EndingArrow
   layers:
   - Default
   - TransparentFX
