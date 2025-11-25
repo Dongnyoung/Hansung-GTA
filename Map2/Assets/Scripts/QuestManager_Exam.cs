@@ -6,91 +6,110 @@ using TMPro;
 public class QuestManager_Exam : MonoBehaviour
 {
     public GameObject Player;
+
     [Header("Quest Panels")]
     public GameObject questWindow;               // 최초 수락/거절 창
     public GameObject missionUIPanel;            // 시간 UI 패널
-    public GameObject questFailedPanel;
-    public GameObject questCompletedPanel;// 성공 패널
+    public GameObject questFailedPanel;          // 실패 패널
+    public GameObject questCompletedPanel;       // 성공 패널
 
     [Header("Timer UI")]
-    public TextMeshProUGUI timerText;            // 미션 UI 안 타이머 TextMeshPro
+    public TextMeshProUGUI timerText;
 
     [Header("Questions")]
-    public GameObject[] questionPanels;          // 문제 패널 배열
-    public ToggleGroup[] answerToggleGroups;     // 문제별 ToggleGroup
-    public int[] correctAnswerIndex;             // 문제별 정답 인덱스
+    public GameObject[] questionPanels;
+    public ToggleGroup[] answerToggleGroups;
+    public int[] correctAnswerIndex;
 
     [Header("Timer Settings")]
-    public float totalTime = 100f;               // 제한 시간
+    public float totalTime = 100f;
     private float remainingTime;
     private bool isTimerRunning = false;
 
-    private int currentIndex = 0;                // 현재 문제 번호
-
-    // 퀘스트 상태
-    private bool questTaken = false;             // 퀘스트를 이미 받았는지
-    private bool questCompleted = false;         // 성공 완료 여부
-
+    private int currentIndex = 0;
+    private bool questTaken = false;
+    private bool questCompleted = false;
 
     public QuestManager deliverQuestManager;
 
-    // 초기 상태 설정
+
+    [Header("Info4")]
+    public GameObject Info4;
+    private bool info4Shown = false;
+
+    public GameObject secondMissionStartArrow;
+
+
+    // ---------------------------
+    // 초기 설정
+    // ---------------------------
     void Start()
     {
         questWindow.SetActive(false);
         missionUIPanel.SetActive(false);
         questFailedPanel.SetActive(false);
         questCompletedPanel.SetActive(false);
-        if(deliverQuestManager==null) deliverQuestManager = GameObject.FindWithTag("DeliverQuest").GetComponent<QuestManager>();
+
+        if (deliverQuestManager == null)
+        {
+            GameObject found = GameObject.FindWithTag("DeliverQuest");
+            if (found != null)
+                deliverQuestManager = found.GetComponent<QuestManager>();
+        }
+
         foreach (var panel in questionPanels)
             panel.SetActive(false);
+
+        // Info2 초기화
+        if (Info4 != null) Info4.SetActive(false);
+        info4Shown = false;
+
+        if (secondMissionStartArrow != null)
+            secondMissionStartArrow.SetActive(false);
     }
 
-    // ===========================
-    // 트리거존에서 호출
-    // ===========================
+    // ---------------------------
+    // 퀘스트 열기
+    // ---------------------------
     public void OpenQuestWindow()
     {
         if (questTaken && questCompleted)
         {
-            Debug.Log("퀘스트는 이미 완료되었습니다.");
-            return; // 성공 완료 시 재진행 불가
+            Debug.Log("이미 퀘스트를 완료했습니다.");
+            return;
         }
 
         questWindow.SetActive(true);
     }
 
-    // ===========================
-    // 수락 눌렀을 때
-    // ===========================
+    // ---------------------------
+    // 퀘스트 수락
+    // ---------------------------
     public void AcceptQuest()
     {
         questWindow.SetActive(false);
 
-        questTaken = true;  // 수락 상태
+        questTaken = true;
         currentIndex = 0;
         remainingTime = totalTime;
 
         missionUIPanel.SetActive(true);
         isTimerRunning = true;
+
         if (deliverQuestManager != null)
-        {
             deliverQuestManager.thirdMissionArrow.SetActive(false);
-        }
+
         ShowQuestion(currentIndex);
     }
 
-    // ===========================
-    // 거절 눌렀을 때
-    // ===========================
     public void DeclineQuest()
     {
         questWindow.SetActive(false);
     }
 
-    // ===========================
-    // 문제 표시 함수
-    // ===========================
+    // ---------------------------
+    // 문제 표시
+    // ---------------------------
     void ShowQuestion(int index)
     {
         if (index < 0 || index >= questionPanels.Length) return;
@@ -105,14 +124,19 @@ public class QuestManager_Exam : MonoBehaviour
 
     void ClearAllToggles(ToggleGroup group)
     {
-        group.SetAllTogglesOff();
+        if (group != null)
+            group.SetAllTogglesOff();
     }
 
+    // ---------------------------
+    // 제출 버튼
+    // ---------------------------
     public void OnClickSubmit()
     {
         if (currentIndex < 0 || currentIndex >= questionPanels.Length) return;
 
         ToggleGroup group = answerToggleGroups[currentIndex];
+
         Toggle selectedToggle = group.ActiveToggles().FirstOrDefault();
 
         if (selectedToggle == null)
@@ -145,20 +169,20 @@ public class QuestManager_Exam : MonoBehaviour
         }
     }
 
+    // ---------------------------
+    // 성공 처리
+    // ---------------------------
     void EndQuestSuccess()
     {
         isTimerRunning = false;
-        questCompleted = true; // 성공 처리
-        questTaken = false;    // 성공 후 재수락 불가 처리
+        questCompleted = true;
+        questTaken = false;
 
-        // 모든 문제 패널 숨기기
         foreach (var panel in questionPanels)
             panel.SetActive(false);
 
-        // 미션 UI 숨기기
         missionUIPanel.SetActive(false);
 
-        // 성공 패널 표시
         if (questCompletedPanel != null)
             questCompletedPanel.SetActive(true);
 
@@ -167,21 +191,24 @@ public class QuestManager_Exam : MonoBehaviour
             CshController controller = Player.GetComponent<CshController>();
             if (controller != null)
             {
-
-                controller.gold += 10000; // 1000골드 지급
+                controller.gold += 10000;
             }
         }
     }
 
+    // ---------------------------
+    // 실패 처리
+    // ---------------------------
     void EndQuestFail()
     {
         isTimerRunning = false;
-        questTaken = false; // 실패 시 다시 받을 수 있도록
+        questTaken = false;
 
         foreach (var panel in questionPanels)
             panel.SetActive(false);
 
         missionUIPanel.SetActive(false);
+
         questFailedPanel.SetActive(true);
 
         if (Player != null)
@@ -206,8 +233,40 @@ public class QuestManager_Exam : MonoBehaviour
     public void CloseCompletedPanel()
     {
         questCompletedPanel.SetActive(false);
+
+
+        if (!info4Shown)
+            OpenInfo4();
     }
 
+    // ===========================================================
+    //  GuideQuest처럼 Info2 자동 실행 기능
+    // ===========================================================
+    public void OpenInfo4()
+    {
+        if (Info4 != null)
+        {
+            Info4.SetActive(true);
+            info4Shown = true;
+
+            Debug.Log("Info2가 활성화되었습니다.");
+        }
+
+        if (secondMissionStartArrow != null)
+            secondMissionStartArrow.SetActive(true);
+    }
+
+    public void CloseInfo4()
+    {
+        if (Info4 != null && Info4.activeSelf)
+        {
+            Info4.SetActive(false);
+        }
+    }
+
+    // ---------------------------
+    // 타이머
+    // ---------------------------
     void Update()
     {
         if (!isTimerRunning) return;
@@ -215,11 +274,11 @@ public class QuestManager_Exam : MonoBehaviour
         remainingTime -= Time.deltaTime;
 
         if (timerText != null)
-            timerText.text = "시험 시간\n" + Mathf.CeilToInt(remainingTime).ToString() + "s";
+            timerText.text = "시험 시간\n" + Mathf.CeilToInt(remainingTime) + "s";
 
         if (remainingTime <= 0)
         {
-            Debug.Log("시간초과 실패!");
+            Debug.Log("시간 초과 실패!");
             EndQuestFail();
         }
     }
