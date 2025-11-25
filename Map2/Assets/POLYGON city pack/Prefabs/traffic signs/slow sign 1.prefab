@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4231694335750506}
   m_Layer: 0
-  m_Name: slow sign
+  m_Name: slow sign 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
