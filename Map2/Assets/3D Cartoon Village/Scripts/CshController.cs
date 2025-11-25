@@ -10,6 +10,9 @@ public class CshController : MonoBehaviour
     public float maxHP = 10;
     public int gold = 0; // 플레이어 소유 골드, 초기값 0
 
+    public string name = "김한성";
+    public int grade = 3;
+
     public float gameTime;
     public float currentTime;
     public float skillCooltime = 10f;
