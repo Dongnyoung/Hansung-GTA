@@ -39,6 +39,9 @@ public class QuestManager_Guide : MonoBehaviour
 
     public GameObject secondMissionStartArrow;
     public GameObject secondMissionCompletedArrow;
+    [Header("Quest BGM")]
+    public AudioSource questBGM;
+    public AudioSource backgroundBGM; // 평소에 흐르는 배경음악
     private void Start()
     {
         if (GuideNPC == null) GuideNPC = GameObject.FindWithTag("GuideNPC");
@@ -128,6 +131,11 @@ public class QuestManager_Guide : MonoBehaviour
         }
 
         Debug.Log("Quest accepted");
+        if (questBGM != null)
+            questBGM.time = 25f; // 하이라이트 시작 지점(초)
+            questBGM.Play();
+        if (backgroundBGM != null)
+            backgroundBGM.Stop();
     }
 
     // 퀘스트 거절
@@ -175,8 +183,12 @@ public class QuestManager_Guide : MonoBehaviour
             }
         }
         
-
         Debug.Log("Quest completed!");
+        
+        if (questBGM != null)
+            questBGM.Stop();
+        if (backgroundBGM != null)
+            backgroundBGM.Play();
     }
 
     // 퀘스트 실패
@@ -215,6 +227,11 @@ public class QuestManager_Guide : MonoBehaviour
         }
 
         Debug.Log("Quest failed due to time out!");
+        
+        if (questBGM != null)
+            questBGM.Stop();
+        if (backgroundBGM != null)
+            backgroundBGM.Play();
     }
 
     // 완료/실패 패널 닫기

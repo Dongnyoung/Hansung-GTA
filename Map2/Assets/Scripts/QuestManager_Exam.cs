@@ -41,6 +41,10 @@ public class QuestManager_Exam : MonoBehaviour
 
     public GameObject EndingArrow;
 
+    [Header("Quest BGM")]
+    public AudioSource questBGM;
+    public AudioSource backgroundBGM;
+
     // ---------------------------
     // 초기 설정
     // ---------------------------
@@ -102,6 +106,11 @@ public class QuestManager_Exam : MonoBehaviour
             deliverQuestManager.thirdMissionArrow.SetActive(false);
 
         ShowQuestion(currentIndex);
+
+        if (questBGM != null)
+            questBGM.Play();
+        if (backgroundBGM != null)
+            backgroundBGM.Stop();
     }
 
     public void DeclineQuest()
@@ -200,6 +209,11 @@ public class QuestManager_Exam : MonoBehaviour
         {
             EndingArrow.SetActive(true);
         }
+
+        if (questBGM != null)
+            questBGM.Stop();
+        if (backgroundBGM != null)
+            backgroundBGM.Play();
     }
 
     // ---------------------------
@@ -227,6 +241,11 @@ public class QuestManager_Exam : MonoBehaviour
                 if (controller.HP < 0) controller.HP = 0;
             }
         }
+
+        if (questBGM != null)
+            questBGM.Stop();
+        if (backgroundBGM != null)
+            backgroundBGM.Play();
     }
 
     public void CloseFailedPanel()

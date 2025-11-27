@@ -37,7 +37,11 @@ public class cshUIManager : MonoBehaviour
     private bool info1Shown = false;
     private float info1StartTime = -1f;    // InfoBase ´ÝÈù ½ÃÁ¡À» ±â·Ï
 
-  
+    [Header("Quest BGM System")]
+    public AudioSource backgroundBGM; // Æò¼Ò¿¡ Èå¸£´Â ¹è°æÀ½¾Ç
+    public AudioSource BaseBGM;      // Äù½ºÆ® ½Ã Àç»ýµÇ´Â À½¾Ç
+
+
 
     void Start()
     {
@@ -81,6 +85,7 @@ public class cshUIManager : MonoBehaviour
             {
                 Info1.SetActive(true);
                 info1Shown = true;
+                if (backgroundBGM != null) backgroundBGM.Play();
             }
 
             // InfoBase ´ÝÈù ÈÄºÎÅÍ info1Duration µÚ Info1 ÀÚµ¿ ´ÝÈû
@@ -140,6 +145,7 @@ public class cshUIManager : MonoBehaviour
             infoBaseClosed = true;
 
             info1StartTime = gameTime;
+            if (BaseBGM != null) BaseBGM.Stop();
         }
     }
 
