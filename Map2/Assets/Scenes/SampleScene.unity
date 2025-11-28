@@ -20586,8 +20586,8 @@ RectTransform:
   - {fileID: 586391558}
   - {fileID: 1193033927}
   - {fileID: 1331390478}
-  - {fileID: 320174549}
   - {fileID: 437920216}
+  - {fileID: 320174549}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -37067,8 +37067,7 @@ MonoBehaviour:
   totalTime: 100
   deliverQuestManager: {fileID: 0}
   Info4: {fileID: 437920215}
-  secondMissionStartArrow: {fileID: 0}
-  EndingArrow: {fileID: 0}
+  EndingArrow: {fileID: 648732477}
   questBGM: {fileID: 1558706279}
   backgroundBGM: {fileID: 1077035192}
 --- !u!1001 &629321126

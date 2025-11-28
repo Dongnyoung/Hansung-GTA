@@ -1,4 +1,4 @@
-using System.Linq;
+ï»¿using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -8,10 +8,10 @@ public class QuestManager_Exam : MonoBehaviour
     public GameObject Player;
 
     [Header("Quest Panels")]
-    public GameObject questWindow;               // ÃÖÃÊ ¼ö¶ô/°ÅÀı Ã¢
-    public GameObject missionUIPanel;            // ½Ã°£ UI ÆĞ³Î
-    public GameObject questFailedPanel;          // ½ÇÆĞ ÆĞ³Î
-    public GameObject questCompletedPanel;       // ¼º°ø ÆĞ³Î
+    public GameObject questWindow;               // ìµœì´ˆ ìˆ˜ë½/ê±°ì ˆ ì°½
+    public GameObject missionUIPanel;            // ì‹œê°„ UI íŒ¨ë„
+    public GameObject questFailedPanel;          // ì‹¤íŒ¨ íŒ¨ë„
+    public GameObject questCompletedPanel;       // ì„±ê³µ íŒ¨ë„
 
     [Header("Timer UI")]
     public TextMeshProUGUI timerText;
@@ -37,7 +37,6 @@ public class QuestManager_Exam : MonoBehaviour
     public GameObject Info4;
     private bool info4Shown = false;
 
-    public GameObject secondMissionStartArrow;
 
     public GameObject EndingArrow;
 
@@ -46,7 +45,7 @@ public class QuestManager_Exam : MonoBehaviour
     public AudioSource backgroundBGM;
 
     // ---------------------------
-    // ÃÊ±â ¼³Á¤
+    // ì´ˆê¸° ì„¤ì •
     // ---------------------------
     void Start()
     {
@@ -65,23 +64,21 @@ public class QuestManager_Exam : MonoBehaviour
         foreach (var panel in questionPanels)
             panel.SetActive(false);
 
-        // Info2 ÃÊ±âÈ­
+        // Info4 ì´ˆê¸°í™”
         if (Info4 != null) Info4.SetActive(false);
         info4Shown = false;
 
-        if (secondMissionStartArrow != null)
-            secondMissionStartArrow.SetActive(false);
         if(EndingArrow!=null) EndingArrow.SetActive(false);
     }
 
     // ---------------------------
-    // Äù½ºÆ® ¿­±â
+    // í€˜ìŠ¤íŠ¸ ì—´ê¸°
     // ---------------------------
     public void OpenQuestWindow()
     {
         if (questTaken && questCompleted)
         {
-            Debug.Log("ÀÌ¹Ì Äù½ºÆ®¸¦ ¿Ï·áÇß½À´Ï´Ù.");
+            Debug.Log("ì´ë¯¸ í€˜ìŠ¤íŠ¸ë¥¼ ì™„ë£Œí–ˆìŠµë‹ˆë‹¤.");
             return;
         }
 
@@ -89,7 +86,7 @@ public class QuestManager_Exam : MonoBehaviour
     }
 
     // ---------------------------
-    // Äù½ºÆ® ¼ö¶ô
+    // í€˜ìŠ¤íŠ¸ ìˆ˜ë½
     // ---------------------------
     public void AcceptQuest()
     {
@@ -119,7 +116,7 @@ public class QuestManager_Exam : MonoBehaviour
     }
 
     // ---------------------------
-    // ¹®Á¦ Ç¥½Ã
+    // ë¬¸ì œ í‘œì‹œ
     // ---------------------------
     void ShowQuestion(int index)
     {
@@ -140,7 +137,7 @@ public class QuestManager_Exam : MonoBehaviour
     }
 
     // ---------------------------
-    // Á¦Ãâ ¹öÆ°
+    // ì œì¶œ ë²„íŠ¼
     // ---------------------------
     public void OnClickSubmit()
     {
@@ -152,7 +149,7 @@ public class QuestManager_Exam : MonoBehaviour
 
         if (selectedToggle == null)
         {
-            Debug.Log("¼±ÅÃÇØÁÖ¼¼¿ä!");
+            Debug.Log("ì„ íƒí•´ì£¼ì„¸ìš”!");
             return;
         }
 
@@ -160,12 +157,12 @@ public class QuestManager_Exam : MonoBehaviour
 
         if (selectedIndex == correctAnswerIndex[currentIndex])
         {
-            Debug.Log("Á¤´ä!");
+            Debug.Log("ì •ë‹µ!");
             currentIndex++;
 
             if (currentIndex >= questionPanels.Length)
             {
-                Debug.Log("¸ğµç ¹®Á¦ ¼º°ø!");
+                Debug.Log("ëª¨ë“  ë¬¸ì œ ì„±ê³µ!");
                 EndQuestSuccess();
             }
             else
@@ -175,13 +172,13 @@ public class QuestManager_Exam : MonoBehaviour
         }
         else
         {
-            Debug.Log("¿À´ä! ½ÇÆĞ!");
+            Debug.Log("ì˜¤ë‹µ! ì‹¤íŒ¨!");
             EndQuestFail();
         }
     }
 
     // ---------------------------
-    // ¼º°ø Ã³¸®
+    // ì„±ê³µ ì²˜ë¦¬
     // ---------------------------
     void EndQuestSuccess()
     {
@@ -217,7 +214,7 @@ public class QuestManager_Exam : MonoBehaviour
     }
 
     // ---------------------------
-    // ½ÇÆĞ Ã³¸®
+    // ì‹¤íŒ¨ ì²˜ë¦¬
     // ---------------------------
     void EndQuestFail()
     {
@@ -263,7 +260,7 @@ public class QuestManager_Exam : MonoBehaviour
     }
 
     // ===========================================================
-    //  GuideQuestÃ³·³ Info2 ÀÚµ¿ ½ÇÇà ±â´É
+    //  GuideQuestì²˜ëŸ¼ Info2 ìë™ ì‹¤í–‰ ê¸°ëŠ¥
     // ===========================================================
     public void OpenInfo4()
     {
@@ -272,11 +269,10 @@ public class QuestManager_Exam : MonoBehaviour
             Info4.SetActive(true);
             info4Shown = true;
 
-            Debug.Log("Info2°¡ È°¼ºÈ­µÇ¾ú½À´Ï´Ù.");
+            Debug.Log("Info2ê°€ í™œì„±í™”ë˜ì—ˆìŠµë‹ˆë‹¤.");
         }
 
-        if (secondMissionStartArrow != null)
-            secondMissionStartArrow.SetActive(true);
+        
     }
 
     public void CloseInfo4()
@@ -288,7 +284,7 @@ public class QuestManager_Exam : MonoBehaviour
     }
 
     // ---------------------------
-    // Å¸ÀÌ¸Ó
+    // íƒ€ì´ë¨¸
     // ---------------------------
     void Update()
     {
@@ -297,11 +293,11 @@ public class QuestManager_Exam : MonoBehaviour
         remainingTime -= Time.deltaTime;
 
         if (timerText != null)
-            timerText.text = "½ÃÇè ½Ã°£\n" + Mathf.CeilToInt(remainingTime) + "s";
+            timerText.text = "ì‹œí—˜ ì‹œê°„\n" + Mathf.CeilToInt(remainingTime) + "s";
 
         if (remainingTime <= 0)
         {
-            Debug.Log("½Ã°£ ÃÊ°ú ½ÇÆĞ!");
+            Debug.Log("ì‹œê°„ ì´ˆê³¼ ì‹¤íŒ¨!");
             EndQuestFail();
         }
     }
